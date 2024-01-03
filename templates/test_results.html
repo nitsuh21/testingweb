@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Results</title>
+</head>
+<body>
+    <h2>Test Results</h2>
+    <ul>
+        {% for test_case in test_cases %}
+            <li>{{ test_case.test_name }} - {{ test_case.status }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
