@@ -11,6 +11,8 @@ from selenium.webdriver.support import expected_conditions as EC
 
 from .cbe_settings import driver
 
+base_url = 'localhost:8000'
+
 class CbeLoginTest:
 
     def __init__(self):
@@ -71,25 +73,29 @@ class CbeLoginTest:
         submit_button_xpath = '/html/body/div[1]/div/div[2]/div/div/form/div/div[4]/button'
         self.enter_text_and_submit(submit_button_xpath)
 
-# Create an instance of your class
-cbeinstance = CbeLoginTest()
+def runtest():
+    # Create an instance of your class
+    cbeinstance = CbeLoginTest()
 
-# Maximize the browser window
-driver = cbeinstance._get_selenium_driver()
-driver.maximize_window()
+    # Maximize the browser window
+    driver = cbeinstance._get_selenium_driver()
+    driver.maximize_window()
 
-# Open the automation practice site
-driver.get('https://ibapi.eaglelionsystems.com/')
+    # Open the automation practice site
+    driver.get(base_url)
 
-# Enter IB username and phone number
-cbeinstance.enter_text_and_submit('/html/body/div[1]/div/div[2]/div/form/div/div[1]/label/span[2]/input', 'ib5098864')
-cbeinstance.enter_text_and_submit('/html/body/div[1]/div/div[2]/div/form/div/div[2]/label/span[2]/input', '977665544')
+    # Enter IB username and phone number
+    cbeinstance.enter_text_and_submit('/html/body/div[1]/div/div[2]/div/form/div/div[1]/label/span[2]/input', 'ib5098864')
+    cbeinstance.enter_text_and_submit('/html/body/div[1]/div/div[2]/div/form/div/div[2]/label/span[2]/input', '977665544')
 
 
-# Get OTP from alert
-otp = cbeinstance.get_otp_from_alert()
-print(f"OTP: {otp}")
+    # Get OTP from alert
+    otp = cbeinstance.get_otp_from_alert()
+    print(f"OTP: {otp}")
 
-# Enter OTP digit by digit
-otp_xpath = '/html/body/div[1]/div/div[2]/div/div/form/div/div[1]/div/input[1]/div/input[{}]'
-cbeinstance.enter_otp_digit_by_digit(otp_xpath, otp)
+    # Enter OTP digit by digit
+    otp_xpath = '/html/body/div[1]/div/div[2]/div/div/form/div/div[1]/div/input[1]/div/input[{}]'
+    cbeinstance.enter_otp_digit_by_digit(otp_xpath, otp)
+
+if __name__ == "__main__":
+    runtest()

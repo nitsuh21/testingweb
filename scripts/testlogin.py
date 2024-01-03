@@ -21,7 +21,7 @@ class LoginTest(unittest.TestCase):
         submit_button.click()
 
         # Assert that the user is redirected to the home page
-        self.assertEqual(self.driver.current_url, "http://localhost:8000/home")
+        self.assertEqual(self.driver.current_url, base_url)
 
     def test_failed_login(self):
         username_input = self.driver.find_element_by_id("username")
